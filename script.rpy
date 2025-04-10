@@ -1,4 +1,4 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -6,6 +6,8 @@
 define m = Character("Mari")
 define na = Character("News Anchor")
 define g = Character("Grandmama")
+define mm = Character("Mailman")
+
 define e = Character("Emma", image = "emma")
 
 define gui.name_xpos = 520
@@ -192,7 +194,7 @@ return
 label start:
     scene bg room
 
-    na "...emergency drafting of eligible individuals from all of Mushroom Kingdom to servce in the rising war effort."
+    na "...emergency drafting of eligible individuals from all of Mushroom Kingdom to serve in the rising war effort."
     na "Tensions between Dragonkind and Mushroomkind have escalated..."
 
     show m shocked
@@ -219,7 +221,36 @@ label start:
 
     "Door bell rings"
 
+    show mm
+
+    mm "Delivery for you, miss"
+
+    show m at left
+
+    m "Thank you.."
+
+    hide mm
+    hide m
+    show m at center
+
+    m "This is real. I - "
+    m "I have to leave. What if I can't do it? I have never been able to wield!"
+
+    hide m
+    show m at left
+    show g at right
+
+    g "It is hard, I know. But remember, you are not alone."
+    m "What if I am not good enough?"
+
+    show g sad at right 
+
+    g "I believe in you. Ebbi and I will cheer you on."
+
+    hide g
+    hide m
+    show m at center
+
+    "I can do this. I have to do this."
+
     return
-
-
-
