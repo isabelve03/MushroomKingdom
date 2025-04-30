@@ -7,6 +7,7 @@ define m = Character("Mari")
 define na = Character("News Anchor")
 define g = Character("Grandmama")
 define mm = Character("Mailman")
+define s = Character("Sadi")
 
 define e = Character("Emma", image = "emma")
 
@@ -194,27 +195,46 @@ return
 label start:
     scene bg room
 
-    na "...emergency drafting of eligible individuals from all of Mushroom Kingdom to serve in the rising war effort."
-    na "Tensions between Dragonkind and Mushroomkind have escalated..."
+    na "...emergency drafting of eligible individuals with magical blood from all of Mushroom Kingdom to serve in the rising war effort."
+    na "Tensions between Dragonkind and Mushroomkind have escalated, and we need every available mage to protect our kingdom..."
 
     show m shocked
     m "Grandma? Is this..."
-    m "real?"
+    m "Real?"
 
     show g sad at right
-    g "It's been a long time coming. You don't know what desperation does to you dear."
+    g "It's been a long time coming, child. Desperation can make people do desperate things."
 
     show m upset at left
-    m "Does this mean I can get drafted? What about Ebbi?" 
+    m "Does this mean I could get drafted? What about Ebbi?" 
     m "Grandmama I can't leave him behind!"
 
     show g smiling at right
-    g "Your little brother has a strong whippersnapper like me. And you, dear, have your grandfather."
+    g "Your little brother has a strong whippersnapper like me. And you, dear, have the blood of your grandfather in you."
 
     show m confused at left
-    m "Pop? I thought he left us."
+    m "Pop? Oh yea huh..."
 
-    g "He'll take care of you if y-"
+    show m at center
+    "I haven’t seen him since I was little. Maybe never, really."
+    "He’s more of a story than a person. The strongest mage, a ghost... not a grandfather."
+
+    menu:
+        "He was never there. Why should I care now?":
+            $ grandpa_opinion = "resentful"
+            m "Why should I care about someone I barely know?"
+            m "He left us. I don't need him and his - blood."
+        "Maybe this is my chance to prove myself to him.":
+            $ grandpa_opinion = "hopeful"
+            m "If he really is as powerful as they say… maybe I can finally be seen."
+            m "I want to be more than just his bloodline."
+        "I don’t know how to feel... but I’ll go anyway.":
+            $ grandpa_opinion = "uncertain"
+            m "I’m not sure what to feel. Anger? Curiosity?"
+            m "All I know is that I have to go."
+
+    show g gentle at right
+    g "Whatever you're feeling, it’s okay. You’ll find your answers — maybe more than you expect."
 
     hide m
     hide g
@@ -253,4 +273,44 @@ label start:
 
     "I can do this. I have to do this."
 
+    jump warcollegescene1
+
+label warcollegescene1:
+    scene bg room
+    with fade
+    
+    "A few weeks later..."
+    
+    show m
+    
+    m "This should be my dorm, room 103."
+    
+    hide m
+    show m at right
+    show s at left
+    
+    "Entering the dorm room, you see a girl putting some luggages away."
+    
+    m "Hello! I believe I am your roommate?.."
+    
+    s "So... Mari, huh?"
+    s "You must be special. I heard about your grandfather. People say that is some sort of an advantage."
+    
+    menu:
+        "Indignantly snap":
+            m "I won't be needing his protection if that is what you're getting at."
+           
+            s "Sure, but it is funny, isn't it? A lot of people would do anything for an advantage here."
+            s "And yet, here you are..."
+            s "Thinking you'll make it on your own."
+            
+            menu:
+                "What do you mean by that?":
+                    s "I'm just warning you. A lot of people will only look for your grandfather in you."
+        "Pokes":
+            m "It is. That is why I am confident I will make it out of this place."
+    "Her words sting, and you feel your guard rise instinctively."
+    
     return
+
+
