@@ -10,6 +10,9 @@ define mm = Character("Mailman")
 define s = Character("Sadi")
 define g = Character("General")
 define r = Character("Professor R")
+define dragon1 = Character("Blue Dragon")
+define dragons2 = Character("Purple and Black Dragons")
+define ch = Character("Chubbs")
 
 define e = Character("Emma", image = "emma")
 
@@ -285,6 +288,8 @@ label start:
 label warcollegescene1:
     scene bg room
     with fade
+
+    play music "background1.mp3" fadein 0.5 loop
     
     "A week later, I officially checked in, not needing an assessment for my wielding skills weirdly enough."
     
@@ -341,6 +346,8 @@ label warcollegescene1:
 label warcollegescene2:
     scene bg room
     with fade
+
+    play music "thegeneral.mp3" fadein 0.5 loop
 
     show m
     "Entering the office, I find the man I heard so much about but yet know nothing in front of me, reading off his chalkboard."
@@ -470,6 +477,8 @@ label warcollegescene2:
 label warcollegescene3:
     scene bg room
     with fade
+
+    play music "suspense.mp3" fadein 0.5 loop
 
     "The hall looms with magic humming faintly in the air. Students are lined up, murmuring to one another."
     "Some look confident. Others, like me, look ready to run."
@@ -618,6 +627,8 @@ label warcollegescene3:
 label warcollegescene4:
     scene bg room
     with fade
+
+    play music "background2.mp3" fadein 0.5 loop
 
     "The room smells like herbs and something slightly burnt. Rows of stone tables are lined with ingredients and glass vials. Cauldrons bubble faintly besides each table."
 
@@ -768,6 +779,8 @@ label warcollegescene5:
     scene bg outside
     with fade
 
+    play music "uplifting.mp3" fadein 0.5 loop
+
     "It has been a few weeks training constantly here at the war college."
 
     show m at center
@@ -807,7 +820,7 @@ label warcollegescene5:
 
     "Then the horns sounded."
 
-    # play sound "horn.wav"
+    play music "suspense.mp3" fadein 0.5 loop
 
     "A blaring, ancient warhorn cuts through the air."
 
@@ -843,6 +856,8 @@ label warcollegescene5:
 
     scene bg hall
     with fade
+
+    play music "suspense.mp3" fadein 0.5 loop
 
     "We panickly filed inside the hall. The windows rattle as a distant explosion echoes."
 
@@ -883,9 +898,12 @@ label warcollegescene5:
     hide r
     hide s
     hide m
+    hide g
 
     scene bg dorm_dusk
     with fade
+
+    play music "suspense.mp3" fadein 0.5 loop
 
     show m at center
 
@@ -949,6 +967,8 @@ label warcollegescene6:
     scene bg battlefield_dusk
     with fade
 
+    play music "action1.mp3" fadein 0.5 loop
+
     "The sun begins to set, as we all march out as one towards whatever the distance had in store for us."
 
     "Smoke curls into the sky. Magic lights the air in bursts of color as the seasoned soldiers clash with dragons. The sound of shouting and fire echoes across the battleground."
@@ -968,6 +988,8 @@ label warcollegescene6:
 
     show dragon1 at right
     with dissolve
+
+    $ mari_injured = False
 
     "A dragon dives and slams into the ground in front of me. I marveled seeing a real dragon in front of me. It's sharp ivory knives for teeth. Razor sharp claws. Beady eyes."
 
@@ -1023,13 +1045,15 @@ label warcollegescene6:
             "I channel a stream of water to the dragon's face, buying me time to get back on my feet. Panting and shaky, I managed to finish the fight myself and watch the dragon retreat."
 
     hide dragon1
-    show 2dragons
+    show dragons2 at left
 
     "I grip the staff tightly, readying myself against the two dragons."
 
+    hide dragons2
+
     "The battle blurs around me with plumes of magic and glowing staves. The sounds of screams dull. But then — "
 
-    show chubbs at right
+    show ch at right
     with dissolve
 
     "A white dragon, larger than the rest, soars down. Its wings beat down, disturbing the dust."
@@ -1039,6 +1063,9 @@ label warcollegescene6:
     "Its claws curl around my body and lift me into the sky."
 
     scene bg sky_war with fade
+
+    show ch at left
+    show m at right
 
     "Wind whips past my face as I struggle mid-air, but it's grip iron."
 
@@ -1103,6 +1130,9 @@ label warcollegescene6:
 
                     jump endingpeace
 
+                "Fight anyways.":
+                    jump chubbs_fight
+
         "I don't trust you.":
             $ mari_believes_dragons = False
             m "Maybe you’re lying. Maybe this is a trick. I was told that you guys are the enemies. That dragons are nothing but conniving, a threat."
@@ -1114,24 +1144,25 @@ label warcollegescene6:
             menu:
                 "Wield.":
                     "I lift my staff up and channeled fire, scorching it's white scales."
+                    $ dragon_opinion -= 1
+                    jump chubbs_fight
+                
+                "Talk.":
+                    m "You're just trying to confuse me."
 
-    else:
-        m "You're just trying to confuse me. Save your breath."
-
-        ch "Then your blindness is a weapon sharper than your staff."
-
-        "He drops me to the rocky ground. I barely land on my feet."
-
-    scene bg cliffedge_battle
-    with fade
-
-    "Chubbs rears back. Magic flares. We fight—alone now. No army. Just truth and fury clashing on the edge of the world."
-
+                    ch "Then your ignorance to the truth will be your detriment."
+                
+            jump chubbs_fight
     return
 
 label endingpeace:
     scene bg battlefield_night
     with fade
+
+    play music "uplifting.mp3" fadein 0.5 loop
+
+    show m at center
+    show ch at left
 
     if opinion_self >= 4:
         "I take a deep breath before projecting my voice over the masses."
@@ -1160,9 +1191,24 @@ label endingpeace:
     else:
         "I see the mass fighting and my heart hammers, unsure if I am able to persuade them, or if I could even find the words to -"
 
-        ""
+        "Chubbs clears his throat before speaking."
+
+        ch "Our land is dying. The mountains no longer can sustain us and the skies covered in smoke. We flew to survive, not to conquer."
+        ch "We do not seek harm. We do not wanna hurt your people. But you have painted my kind as a threat and hurt us before we could even ask for help."
 
     "The crowd of mushrooms muttered uneasily amongst each other while the cluster of dragons averted their eyes, showing signs of vulnerability."    
+
+    ch "If we keep fighting, more unnecessary blood will shed. We can talk and maybe find a way to coexist."
+
+    m "Let this be the last day we fight blindly without question."
+    if grandpa_opinion == "resentful":
+        "Following a legend, a General, will not bring us glory. We would destroy each other if we didn't try other options. Options of peace."
+
+    "Mushrooms all around begin nodding their head in slow agreement."
+
+    "Peace is possible when you choose to listen and learn."
+
+    return
 
 
 
@@ -1170,109 +1216,62 @@ label chubbs_fight:
 
     scene bg cliffedge_battle
     with fade
+    
+    "I realize that it was me and this dragon. No army. No Sadi. Just me and my staff the General gave me."
 
-    "Chubbs' wings stretch wide, glowing slightly with an inner magic. His eyes burn—not just with anger, but desperation."
+    "Chubbs' wings stretch wide, glowing slightly with an inner magic. His eyes burn — not with hate, but determination."
+
+    show ch at left
+    show m at right
 
     ch "I don’t want to fight you, Mari. But I won’t let you stand in the way of our survival."
 
     if mari_believes_dragons:
-        m "I don’t want to fight either. But they’ll never listen if I show up empty-handed!"
+        m "I don’t want to fight either. But they’ll never listen to me!"
 
-        ch "Then prove to them I'm not your enemy. Survive this."
+        ch "Then don't."
 
-        "He lunges—not with full force, but to test me."
+        if mari_injured == True:
+            ch "Plus, you're injured. We shouldn't be fighting."
+
+        "I saw him lunge at me and I shoot out a fireball straight to his left wing. He doubles back in pain. He reaches forward again and I zap electricity to his outstretched arm."
+
+        if dragon_opinion > 2:
+            ch "Stop. I know we can work together if you'd just believe me."
+
+            menu:
+                "Believe him.":
+                    "I put my staff down and let out a sigh before making my decision."
+
+                    m "Take me back down there."
+
+                    "Chubbs nods in appreciation and lifts me up again with his claws. We get just above the battling mages and dragons."
+
+                    jump endingpeace
+                "Finish him":
+                    "Aiming the end of my staff towards the white dragon, seemingly small in this moment. The sunrise peaking through the trees behind him. I let out a small breathe before I took his. Light flashed and my aim hit true. The white dragon was no longer on top of the cliff with me."
+
+                    "I took his life..."
+                    m "I am like {i}him{/i}. I killed. I am just like the General."
+
+                    if opinion_self >= 5:
+                        "I stand up a bit straighter."
+                        m "I will protect my people just like him. No one will deceive me."
+                        return
 
     elif mari_believes_dragons is False:
-        m "You’re lying. You don’t care who dies—just as long as you get what you want."
+        m "You’re lying. You don’t care, you just wanna steal our resources and leave us dry. Because you see us weak."
 
-        ch "You think this is what we wanted? Then show me what you believe!"
+        ch "This is not what I want. You got us all wrong."
 
-        "He roars and strikes, forcing me into a defensive stance."
+        "He roars in frustration and I strike instinctively. He doubles back in pain. He reaches forward again and I zap electricity to his outstretched arm."
 
-    else:
-        m "I… I don’t know what to believe."
+        "Aiming the end of my staff towards the white dragon, seemingly small in this moment. The sunrise peaking through the trees behind him. I let out a small breathe before I took his. Light flashed and my aim hit true. The white dragon was no longer on top of the cliff with me."
 
-        ch "Then let your body speak while your mind catches up."
+        "I took his life..."
+        m "I am like {i}him{/i}. I killed. I am just like the General."
 
-        "The wind howls around us as we clash."
-
-    # FIGHT BEGINS
-
-    "We trade blows—his claws against my spells. I dart and weave, narrowly dodging sweeping strikes. My staff shudders under the force of every block."
-
-    if opinion_self < 3 and mari_injured:
-        "Pain blossoms in my side. I gasp, stumbling. He doesn’t press the advantage—he waits."
-
-        ch "Still you rise. Why?"
-
-        m "Because I have to!"
-
-        "I summon a burst of force and launch it, staggering him backward."
-
-    elif opinion_self >= 4:
-        "My feet are steady. My strikes land with purpose. I’m not just reacting—I’m adapting."
-
-        ch "You’ve grown strong."
-
-        m "I had to. Everyone expects me to fight. To kill."
-
-        ch "And do you want to?"
-
-        m "..."
-
-    # After a few rounds...
-
-    "The cliff shakes. Fire and smoke rise in the distance. Below us, the battle rages on—but here, it’s silent save for our breath."
-
-    ch "Why are you really fighting, Mari?"
-
-    menu:
-        "To protect my people.":
-            m "Because if I don’t, more will die. I have to protect my people."
-
-            ch "Even if that means slaughtering mine?"
-
-            m "...I don’t know. But I want to find another way."
-
-        "Because I was told to.":
-            m "Because… because it’s what I was trained for. What I’m supposed to do."
-
-            ch "Then you are no warrior—just a weapon."
-
-            "That stings. But maybe he’s right."
-
-        "I’m not sure anymore.":
-            m "I don’t know anymore. I came here thinking you were monsters. But now I see—you're just fighting to live."
-
-            ch "Then help me. Let’s end this before more die."
-
-    # END OF DUEL
-
-    if mari_believes_dragons or opinion_self >= 4:
-        "I lower my staff slowly."
-
-        m "I won’t fight you anymore."
-
-        ch "Then come with me. We’ll face the truth together."
-
-        "He bows his head slightly, then crouches low. I climb onto his back. Below, the battlefield blurs as we take to the skies."
-
-        $ chubbs_alliance = True
-
-    else:
-        "I raise my staff again—but my hands shake."
-
-        ch "Then strike. If you truly believe we’re the enemy, finish this."
-
-        "But I can’t move. Not really."
-
-        "Before I can decide, a cry rises from the valley below. Someone’s in danger."
-
-        ch "We’ll meet again, Mari. Decide who you are before then."
-
-        "He dives off the cliff and vanishes into the smoke."
-
-        $ chubbs_alliance = False
-
-    return
-
+        if opinion_self >= 5:
+            "I stand up a bit straighter."
+            m "I will protect my people just like him. No one will deceive me."
+            return
