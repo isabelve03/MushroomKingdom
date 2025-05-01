@@ -305,7 +305,7 @@ label warcollegescene1:
 
     m "You've heard of him?"
 
-    s "He's the general. Everyone has."
+    s "He's the General. Everyone has."
     "She scans me from head to toe."
     s "It makes more sense now."
 
@@ -367,7 +367,7 @@ label warcollegescene2:
 
     g "Take a seat."
 
-    "Begrudgingly, I take a seat and look up expectedly to what my grandfa- the general has to say."
+    "Begrudgingly, I take a seat and look up expectedly to what my grandfa- the General has to say."
 
     g "Many years ago, Dragons once shared the forests with us."
 
@@ -500,7 +500,7 @@ label warcollegescene3:
     show m
 
     "I tense up. Of course I am first."
-    "I step forward, bringing the staff the general gave me. With every eye burning the back of my head, my hands begin to tremble."
+    "I step forward, bringing the staff the General gave me. With every eye burning the back of my head, my hands begin to tremble."
 
     if grandpa_opinion == "resentful":
         menu:
@@ -750,7 +750,7 @@ label warcollegescene4:
         s "Well, that was fun watching you fail."
         menu:
             "Why do you care so much about what I do?":
-                s "Because you're the general's granddaughter and it feeds my ego."
+                s "Because you're the General's granddaughter and it feeds my ego."
                 "She walks off with a teasing smirk."
 
             "Whatever.":
@@ -875,7 +875,7 @@ label warcollegescene5:
             "Was that a hint of fear in her voice?"
             $ sadi_relationship += 1 
 
-    "The torches flicker. The general's voice rings out from the front steps."
+    "The General's voice rings out from ahead of the crowd. The air tight with tension."
 
     show g at center
     g "You’re no longer students. This is real combat. We deploy in 15 minutes. Get your staffs and potions - GO!"
@@ -923,7 +923,7 @@ label warcollegescene5:
 
         m "What? Why cause you'd miss me?"
 
-        s "No. Definitely not. But then I would have to explain to the general his granddaughter got herself roasted. He'd have my head."
+        s "No. Definitely not. But then I would have to explain to the General his granddaughter got herself roasted. He'd have my head."
 
         "We both laugh quietly. It didn't last long, but it was real and what I needed."
 
@@ -1020,63 +1020,100 @@ label warcollegescene6:
             hide s
 
         else:
-            "I channel a stream of water to the dragon's face, buying me time to get back on my feet. Panting and shaky, I managed to finish the fight myself and walk the dragon retreat."
+            "I channel a stream of water to the dragon's face, buying me time to get back on my feet. Panting and shaky, I managed to finish the fight myself and watch the dragon retreat."
 
     hide dragon1
     show 2dragons
 
     "I grip the staff tightly, readying myself against the two dragons."
 
-    "The battle blurs around me—screams, fire, glowing staves. But then—"
+    "The battle blurs around me with plumes of magic and glowing staves. The sounds of screams dull. But then — "
 
     show chubbs at right
     with dissolve
 
-    "A white dragon, larger than the rest, soars down. Its wings beat the smoke aside like wind."
+    "A white dragon, larger than the rest, soars down. Its wings beat down, disturbing the dust."
 
-    "It locks eyes with me. I raise my staff—but too late."
+    "It locks eyes with me. I raise my staff — but too late."
 
     "Its claws curl around my body and lift me into the sky."
 
     scene bg sky_war with fade
 
-    "Wind whips past my face. We fly higher. I struggle, scream, kick—but the grip is iron."
+    "Wind whips past my face as I struggle mid-air, but it's grip iron."
 
     "Then it speaks."
 
-    ch "Why are you fighting us?"
+    ch "How dare you go against us?"
 
     m "...What?"
 
-    ch "You think we want this? That we chose to burn and bleed and run from the skies?"
+    ch "You think we want this? That we chose to fight you?"
 
-    if opinion_self >= 4 or sadi_relationship >= 5:
-        m "I don’t know what to believe anymore. I was told... dragons are enemies. That’s it."
+    m "What are you talking about? You are invading us. Stealing from us."
 
-        ch "Told. But what do you see now?"
+    "My eyes dart down to see the battle below us."
 
-        "We land roughly on a cliffside. The dragon lowers me to the ground. Not gently—but not to kill me either."
+    ch "What do you see?"
 
-        ch "I am Chubbs of the Hollow Sky. My kind flees starvation. Your kingdom calls us monsters."
+    if dragon_opinion == "questioning" or dragon_opinion == "unsure":
 
-        m "Then talk to them—don’t attack!"
+        "Looking again, I see the mushroomkind winning, driving the dragons away. Despite being bigger and stronger, their moves seem... reluctant."
 
-        ch "We tried. They answered with arrows."
+        m "I see needless fight."
+        $ chubbs_relationship = 1
+        
+        "The dragon lets me loose and land softly on a cliffside that oversees the battlegrounds."
 
-        "I hesitate. My staff burns in my hand, but I don’t raise it."
+    ch "I am Chubbs, leader of my people. My kind flees from devastation. Your kingdom calls us monsters for seeking refuge."
 
-        menu:
-            "I believe you.":
-                $ mari_believes_dragons = True
-                m "There has to be another way."
+    if dragon_opinion == "accepted":
+        
+        "Looking again, I see the mushroomkind winning, driving the dragons away."
 
-                ch "Then help me find it, Mari."
+        m "I see my kind beating our enemy. And I see that I need solid ground."
+        $ chubbs_relationship = -1
 
-            "I don't trust you.":
-                $ mari_believes_dragons = False
-                m "Maybe you’re lying. Maybe this is another trick."
+        "The dragon lets me loose and land roughly on a cliffside that oversees the battlegrounds."
 
-                ch "Then I’ll defend my kind. And you’ll go down with your lies."
+    m "If you really wanted help, why didn't you ask?"
+
+    ch "We tried. Anbd your people answered with explosions."
+
+    "I hesitate. My staff burns in my hand, but I don’t raise it."
+
+    menu:
+        "I believe you.":
+            $ mari_believes_dragons = True
+            m "There has to be another way."
+
+            ch "Then help me find it, Mari. Help me stop this. I just wanna give my kind food and shelter."
+
+            m "Wait a minute, you know my name?"
+
+            ch "You're the General's granddaughter. You are the best chance I have."
+
+            "Taken aback, I gape up at him. This big dragon is asking {i}me{/i} for help."
+
+            menu:
+                "Stop the fighting.":
+                    m "Take me back down there."
+
+                    "Chubbs nods in agreement and lifts me up again with his claws. We get just above the battling mages and dragons."
+
+                    jump endingpeace
+
+        "I don't trust you.":
+            $ mari_believes_dragons = False
+            m "Maybe you’re lying. Maybe this is a trick. I was told that you guys are the enemies. That dragons are nothing but conniving, a threat."
+
+            ch "Then I’ll defend my kind. And you’ll go down with his lies."
+
+            "Taken aback, I gape up at the dragon. The staff hums slightly in my hands again."
+
+            menu:
+                "Wield.":
+                    "I lift my staff up and channeled fire, scorching it's white scales."
 
     else:
         m "You're just trying to confuse me. Save your breath."
@@ -1091,6 +1128,43 @@ label warcollegescene6:
     "Chubbs rears back. Magic flares. We fight—alone now. No army. Just truth and fury clashing on the edge of the world."
 
     return
+
+label endingpeace:
+    scene bg battlefield_night
+    with fade
+
+    if opinion_self >= 4:
+        "I take a deep breath before projecting my voice over the masses."
+        m "STOP FIGHTING!" # text jitters
+
+        "Few stumbled after hearing me but the fighting continued."
+
+        m "HEY. LISTEN TO ME. STOP FIGHTING."
+
+        "Chubbs mutters before releasing a bone-shattering roar."
+
+        ch "EVERYONE STOP."
+        $ chubbs_relationship = 1
+
+        "The batch of battered people, tire from the fighting, held back their magical casts and fiery breaths."
+
+        m "We were wrong. They need our help. They're here because their home no longer can provide for them."
+
+        "Chubbs sets me down on the ground lightly while the crowd circles around us."
+
+        ch "Mari is right. We do not seek harm. We do not wanna hurt your people. But you have painted my kind as a threat and hurt us before we could even ask for help."
+
+        m "I was taught that dragons were monstors. That they are here steal and burn down our homes."
+        m "But I listened to Chubbs. I looked at the fight. I saw desperation. I saw companions and families just like ours. They're fighting not cause they want to, but because they had no choice."
+
+    else:
+        "I see the mass fighting and my heart hammers, unsure if I am able to persuade them, or if I could even find the words to -"
+
+        ""
+
+    "The crowd of mushrooms muttered uneasily amongst each other while the cluster of dragons averted their eyes, showing signs of vulnerability."    
+
+
 
 label chubbs_fight:
 
@@ -1201,3 +1275,4 @@ label chubbs_fight:
         $ chubbs_alliance = False
 
     return
+
